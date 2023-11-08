@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Countdown Timer</title>
+  <style>
+    .countdown {
+      font-size: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="countdown" id="countdown"></div>
+
+  <script>
+    // Set the target date for the countdown (in this example, 10 minutes from now)
+    const targetDate = new Date();
+    targetDate.setMinutes(targetDate.getMinutes() + 1);
+
+    // Function to update the countdown
+    function updateCountdown() {
+      const currentDate = new Date();
+      const timeLeft = targetDate - currentDate;
+
+      if (timeLeft <= 0) {
+        document.getElementById("countdown").innerHTML = "Countdown expired!";
+      } else {
+        const minutes = Math.floor((timeLeft / 1000 / 60) % 60);
+        const seconds = Math.floor((timeLeft / 1000) % 60);
+        document.getElementById("countdown").innerHTML = `${minutes}m ${seconds}s`;
+      }
+    }
+
+    // Call the updateCountdown function every second
+    setInterval(updateCountdown, 1000);
+
+    // Initial call to set the initial countdown value
+    updateCountdown();
+  </script>
+</body>
+</html>
